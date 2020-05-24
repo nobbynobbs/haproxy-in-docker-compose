@@ -21,6 +21,7 @@ func (s *Counter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.WriteHeader(500)
 		_, _ = w.Write([]byte("i can't find myself in this world"))
+		return
 	}
 	resp := fmt.Sprintf("%s called %d times", hostname, s.counter)
 	_, _ = w.Write([]byte(resp))
