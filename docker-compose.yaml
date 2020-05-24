@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  haproxy:
+    image: haproxy:2.1.4-alpine
+    volumes:
+    - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    ports:
+      - "8080:8080"
+    depends_on:
+      - worker
+
+  worker:
+    build:
+      context: .
