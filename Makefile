@@ -3,6 +3,8 @@
 start:
 	docker-compose up --scale worker=5 -d
 
+run: start
+
 stop:
 	docker-compose down
 
