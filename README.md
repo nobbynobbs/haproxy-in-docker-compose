@@ -6,7 +6,7 @@ for scalable service
 ## Requirements
 - docker
 - docker-compose
-- free tcp port 8080
+- free tcp ports 8080, 9090
 
 ## Defined make targets
 

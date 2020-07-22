@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"os"
 	"sync"
+
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 type Counter struct {
@@ -13,7 +15,7 @@ type Counter struct {
 }
 
 
-func (s *Counter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (s *Counter) ServeHTTP(w http.ResponseWriter, _ *http.Request) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	s.counter++
@@ -28,6 +30,7 @@ func (s *Counter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	http.Handle("/metrics", promhttp.Handler())
 	http.Handle("/", new(Counter))
 	_ = http.ListenAndServe(":8080", nil)
 }

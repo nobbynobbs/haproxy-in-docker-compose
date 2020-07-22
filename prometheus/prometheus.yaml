@@ -1,0 +1,8 @@
+scrape_configs:
+- job_name: 'workers'
+
+  dns_sd_configs:
+  - names:
+    - 'worker'
+    type: "A"
+    port: 8080
